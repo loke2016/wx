@@ -1,0 +1,23 @@
+<view class="photo-item" bindtap="onTap" style="height: {{height}}px;">
+  <view class="photo-image-container">
+    <image 
+      class="photo-image {{imageLoading ? 'loading' : ''}}" 
+      src="{{imagePath}}" 
+      mode="widthFix" 
+      lazy-load="true"
+    ></image>
+    <view class="photo-loading" wx:if="{{imageLoading}}">
+      <view class="loading-spinner"></view>
+    </view>
+  </view>
+  <view class="photo-info" wx:if="{{photo.description}}">
+    <text class="photo-description">{{photo.description}}</text>
+  </view>
+  <view class="photo-meta">
+    <view class="photo-user">
+      <image class="user-avatar" src="{{photo.user.avatar}}" mode="aspectFill"></image>
+      <text class="user-name">{{photo.user.nickname}}</text>
+    </view>
+    <view class="photo-date">{{photo.createTime}}</view>
+  </view>
+</view> 

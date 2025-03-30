@@ -1,0 +1,30 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-title">登录</view>
+  </view>
+
+  <view class="logo-container">
+    <view class="logo"></view>
+    <text class="app-name">家庭共享相册</text>
+    <text class="app-slogan">记录美好，珍藏回忆</text>
+  </view>
+  
+  <view class="login-form">
+    <button 
+      class="login-button"
+      open-type="getUserInfo"
+      bindgetuserinfo="onGetUserInfo"
+    >
+      <view class="wechat-icon"></view>
+      <text>微信一键登录</text>
+    </button>
+    
+    <view class="privacy-policy">
+      <text>登录即表示您同意</text>
+      <text class="link" bindtap="onViewPrivacy">《隐私政策》</text>
+    </view>
+  </view>
+  
+  <loading show="{{loading}}" loadingText="登录中..."></loading>
+</view> 

@@ -1,0 +1,76 @@
+<view class="container">
+  <view class="header">
+    <view class="title">个人中心</view>
+  </view>
+  
+  <view class="content">
+    <view class="user-card">
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="user-info">
+        <text class="user-name">{{userInfo.nickName}}</text>
+        <text class="user-id">家庭ID: {{familyInfo.id || '未加入家庭'}}</text>
+      </view>
+    </view>
+    
+    <view class="menu-list">
+      <view class="menu-item" bindtap="onGoToFamily">
+        <view class="menu-icon family-icon"></view>
+        <text class="menu-text">家庭成员管理</text>
+        <view class="menu-arrow"></view>
+      </view>
+      
+      <view class="menu-item" bindtap="onGoToMyPhotos">
+        <view class="menu-icon photos-icon"></view>
+        <text class="menu-text">我的照片</text>
+        <view class="menu-arrow"></view>
+      </view>
+      
+      <view class="menu-item" bindtap="onViewStorageStats">
+        <view class="menu-icon storage-icon"></view>
+        <text class="menu-text">存储空间</text>
+        <view class="menu-arrow"></view>
+      </view>
+    </view>
+    
+    <view class="bottom-button">
+      <button class="logout-button" bindtap="onLogout">退出登录</button>
+    </view>
+  </view>
+  
+  <view class="storage-modal" wx:if="{{showStorageStats}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">存储空间统计</text>
+        <view class="modal-close" bindtap="onCloseStorageStats">×</view>
+      </view>
+      
+      <view class="storage-stats">
+        <view class="storage-progress">
+          <view class="progress-bar">
+            <view class="progress-inner" style="width: {{storageStats.usagePercent}}%"></view>
+          </view>
+          <view class="progress-text">
+            <text>{{storageStats.usedSize}} / {{storageStats.totalSize}}</text>
+          </view>
+        </view>
+        
+        <view class="storage-detail">
+          <view class="detail-item">
+            <text class="detail-label">已用空间</text>
+            <text class="detail-value">{{storageStats.usedSize}}</text>
+          </view>
+          <view class="detail-item">
+            <text class="detail-label">总空间</text>
+            <text class="detail-value">{{storageStats.totalSize}}</text>
+          </view>
+          <view class="detail-item">
+            <text class="detail-label">照片数量</text>
+            <text class="detail-value">{{storageStats.photoCount}} 张</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <loading show="{{loading}}" loadingText="加载中..."></loading>
+</view> 

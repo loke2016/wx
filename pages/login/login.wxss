@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #fff;
+  padding: 0 50rpx 100rpx;
+  box-sizing: border-box;
+}
+
+/* 自定义导航栏样式 */
+.custom-nav {
+  width: 100%;
+  height: 90px;
+  padding-top: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #fff;
+}
+
+.nav-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.logo {
+  width: 200rpx;
+  height: 200rpx;
+  background-color: #1296db;
+  border-radius: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.app-name {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.app-slogan {
+  font-size: 32rpx;
+  color: #666;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.login-button {
+  width: 100%;
+  height: 90rpx;
+  background-color: #07c160;
+  color: #fff;
+  border-radius: 45rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+  font-size: 32rpx;
+}
+
+.wechat-icon {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.privacy-policy {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.link {
+  color: #1296db;
+} 

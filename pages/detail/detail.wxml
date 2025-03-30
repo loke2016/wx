@@ -1,0 +1,94 @@
+<view class="container">
+  <view class="photo-header">
+    <view class="back-btn" bindtap="onBack">
+      <view class="back-icon"></view>
+    </view>
+    <view class="header-actions">
+      <view class="action-btn" wx:if="{{isOwner}}" bindtap="onDelete">
+        <view class="delete-icon"></view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="photo-view">
+    <image 
+      class="photo-image {{imageLoading ? 'loading' : ''}}" 
+      src="{{photo.url}}" 
+      mode="aspectFit"
+      bindload="onImageLoad"
+      bindtap="onPreviewImage"
+    ></image>
+    <view class="loading-wrapper" wx:if="{{imageLoading}}">
+      <view class="loading-icon"></view>
+    </view>
+  </view>
+  
+  <view class="photo-info">
+    <view class="info-header">
+      <view class="user-info">
+        <image class="user-avatar" src="{{photo.user.avatar}}" mode="aspectFill"></image>
+        <text class="user-name">{{photo.user.nickname}}</text>
+      </view>
+      <view class="photo-time">{{photo.createTime}}</view>
+    </view>
+    
+    <view class="photo-description" wx:if="{{photo.description}}">
+      <text>{{photo.description}}</text>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="photo-actions">
+      <view class="action-item {{photo.isLiked ? 'active' : ''}}" bindtap="onToggleLike">
+        <view class="action-icon like-icon"></view>
+        <text class="action-text">{{photo.likeCount || '点赞'}}</text>
+      </view>
+      <view class="action-item" bindtap="onFocusComment">
+        <view class="action-icon comment-icon"></view>
+        <text class="action-text">{{photo.commentCount || '评论'}}</text>
+      </view>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="comments-section">
+      <view class="section-title">全部评论 ({{comments.length}})</view>
+      
+      <view class="comments-list">
+        <block wx:if="{{comments.length > 0}}">
+          <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+            <image class="comment-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
+            <view class="comment-content">
+              <view class="comment-header">
+                <text class="comment-name">{{item.user.nickname}}</text>
+                <text class="comment-time">{{item.createTime}}</text>
+              </view>
+              <text class="comment-text">{{item.content}}</text>
+            </view>
+          </view>
+        </block>
+        <view class="empty-comments" wx:else>
+          <text>暂无评论，快来说点什么吧~</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="comment-box">
+    <input 
+      class="comment-input" 
+      placeholder="写评论..." 
+      value="{{commentContent}}"
+      focus="{{commentFocus}}"
+      confirm-type="send"
+      bindconfirm="onSubmitComment"
+      bindinput="onCommentInput"
+    ></input>
+    <view 
+      class="send-btn {{commentContent ? 'active' : ''}}" 
+      bindtap="onSubmitComment"
+    >发送</view>
+  </view>
+  
+  <loading show="{{loading}}" loadingText="加载中..."></loading>
+</view> 

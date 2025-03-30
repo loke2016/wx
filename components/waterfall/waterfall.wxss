@@ -1,0 +1,21 @@
+.waterfall-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.waterfall-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.left-column {
+  margin-right: 2rpx;
+}
+
+.right-column {
+  margin-left: 2rpx;
+} 

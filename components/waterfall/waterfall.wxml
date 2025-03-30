@@ -1,0 +1,20 @@
+<view class="waterfall-container">
+  <view class="waterfall-column left-column" style="padding-left: {{gutter}}rpx; padding-right: {{gutter/2}}rpx;">
+    <block wx:for="{{leftList}}" wx:key="id">
+      <photo-item 
+        photo="{{item}}" 
+        height="{{item.height}}" 
+        bind:tap="onPhotoTap"
+      ></photo-item>
+    </block>
+  </view>
+  <view class="waterfall-column right-column" style="padding-left: {{gutter/2}}rpx; padding-right: {{gutter}}rpx;">
+    <block wx:for="{{rightList}}" wx:key="id">
+      <photo-item 
+        photo="{{item}}" 
+        height="{{item.height}}" 
+        bind:tap="onPhotoTap"
+      ></photo-item>
+    </block>
+  </view>
+</view> 

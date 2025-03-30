@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "waterfall": "../../components/waterfall/waterfall",
+    "empty-tip": "../../components/empty-tip/empty-tip",
+    "loading": "../../components/loading/loading"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f7f7f7"
+}

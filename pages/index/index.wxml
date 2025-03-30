@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="header">
+      <view class="title">家庭相册</view>
+    </view>
+    
+    <scroll-view 
+      class="content" 
+      scroll-y="true" 
+      enable-back-to-top="true"
+      bindscrolltolower="onLoadMore"
+      refresher-enabled="true"
+      refresher-triggered="{{refreshing}}"
+      bindrefresherrefresh="onRefresh"
+    >
+      <waterfall 
+        list="{{photoList}}" 
+        column="2" 
+        gutter="20"
+        bind:tapitem="onPhotoTap"
+      ></waterfall>
+      
+      <empty-tip 
+        show="{{photoList.length === 0 && !loading}}" 
+        text="还没有照片，赶紧上传吧~"
+      ></empty-tip>
+      
+      <view class="load-more" wx:if="{{hasMore && photoList.length > 0}}">
+        <text>加载更多...</text>
+      </view>
+      
+      <view class="no-more" wx:if="{{!hasMore && photoList.length > 0}}">
+        <text>没有更多照片了~</text>
+      </view>
+    </scroll-view>
+    
+    <loading show="{{loading}}" loadingText="加载中..."></loading>
+  </view>
+</scroll-view>

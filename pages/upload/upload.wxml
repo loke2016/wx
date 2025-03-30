@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="header">
+    <view class="title">上传照片</view>
+  </view>
+  
+  <view class="content">
+    <view class="upload-area">
+      <view class="photo-grid">
+        <view 
+          class="photo-item {{index < selectedPhotos.length ? 'has-photo' : ''}}" 
+          wx:for="{{maxCount}}" 
+          wx:key="index"
+          bindtap="{{index < selectedPhotos.length ? 'onPreviewPhoto' : 'onChoosePhoto'}}"
+          data-index="{{index}}"
+        >
+          <block wx:if="{{index < selectedPhotos.length}}">
+            <image class="photo-image" src="{{selectedPhotos[index].path}}" mode="aspectFill"></image>
+            <view class="photo-delete" catchtap="onDeletePhoto" data-index="{{index}}">
+              <text class="delete-icon">×</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="add-icon">+</view>
+            <text class="add-text">添加照片</text>
+          </block>
+        </view>
+      </view>
+      
+      <view class="tip-text">
+        <text>最多可上传{{maxCount}}张照片，单张不超过10MB</text>
+      </view>
+      
+      <view class="description-area">
+        <textarea 
+          class="description-input"
+          placeholder="添加描述（选填）"
+          maxlength="200"
+          bindinput="onDescriptionInput"
+          value="{{description}}"
+        ></textarea>
+        <view class="description-counter">{{description.length}}/200</view>
+      </view>
+    </view>
+    
+    <view class="button-area">
+      <button 
+        class="upload-button {{selectedPhotos.length === 0 ? 'disabled' : ''}}"
+        bindtap="onUploadPhotos"
+        disabled="{{selectedPhotos.length === 0 || uploading}}"
+      >
+        {{uploading ? '上传中...' : '上传照片'}}
+      </button>
+    </view>
+  </view>
+  
+  <view class="upload-progress" wx:if="{{uploading}}">
+    <view class="progress-bar">
+      <view class="progress-inner" style="width: {{uploadProgress * 100}}%"></view>
+    </view>
+    <view class="progress-text">
+      <text>已上传 {{uploadedCount}}/{{selectedPhotos.length}} 张</text>
+    </view>
+  </view>
+  
+  <loading show="{{uploading}}" loadingText="上传中..."></loading>
+</view> 

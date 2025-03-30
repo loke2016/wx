@@ -1,0 +1,91 @@
+<view class="container">
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <view class="back-icon"></view>
+    </view>
+    <view class="title">家庭管理</view>
+  </view>
+  
+  <view class="content">
+    <block wx:if="{{hasFamily}}">
+      <view class="family-info">
+        <view class="family-name">
+          <text class="label">家庭ID：</text>
+          <text class="value">{{familyInfo.id}}</text>
+        </view>
+        <view class="family-members">
+          <view class="section-title">
+            <text>家庭成员 ({{members.length}})</text>
+            <view class="invite-btn" bindtap="onGenerateInvite">邀请成员</view>
+          </view>
+          <view class="members-list">
+            <view class="member-item" wx:for="{{members}}" wx:key="id">
+              <image class="member-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+              <view class="member-info">
+                <text class="member-name">{{item.nickname}} {{item.isOwner ? '(管理员)' : ''}}</text>
+                <text class="member-time">加入时间：{{item.joinTime}}</text>
+              </view>
+              <view 
+                class="member-remove" 
+                wx:if="{{isOwner && currentUser.id !== item.id}}"
+                bindtap="onRemoveMember"
+                data-id="{{item.id}}"
+              >移除</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <block wx:else>
+      <view class="no-family">
+        <view class="tip-icon"></view>
+        <view class="tip-text">您还没有加入家庭</view>
+        <view class="action-buttons">
+          <button class="action-button create" bindtap="onCreateFamily">创建家庭</button>
+          <button class="action-button join" bindtap="onJoinFamily">加入家庭</button>
+        </view>
+      </view>
+    </block>
+  </view>
+  
+  <view class="invite-modal" wx:if="{{showInviteModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">邀请码</text>
+        <view class="modal-close" bindtap="onCloseInviteModal">×</view>
+      </view>
+      <view class="invite-code-container">
+        <view class="invite-code">{{inviteCode}}</view>
+        <view class="invite-tip">
+          <text>请将邀请码分享给家人，有效期24小时</text>
+        </view>
+        <button class="copy-button" bindtap="onCopyInviteCode">复制邀请码</button>
+      </view>
+    </view>
+  </view>
+  
+  <view class="join-modal" wx:if="{{showJoinModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">加入家庭</text>
+        <view class="modal-close" bindtap="onCloseJoinModal">×</view>
+      </view>
+      <view class="join-form">
+        <input 
+          class="invite-input" 
+          placeholder="请输入邀请码" 
+          value="{{inputInviteCode}}"
+          bindinput="onInviteCodeInput"
+        ></input>
+        <button 
+          class="join-button {{inputInviteCode ? '' : 'disabled'}}" 
+          bindtap="onJoinWithInviteCode"
+          disabled="{{!inputInviteCode}}"
+        >加入</button>
+      </view>
+    </view>
+  </view>
+  
+  <loading show="{{loading}}" loadingText="加载中..."></loading>
+</view> 

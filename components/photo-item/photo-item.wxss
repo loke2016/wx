@@ -1,0 +1,101 @@
+.photo-item {
+  position: relative;
+  width: 100%;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-image-container {
+  position: relative;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+
+.photo-image {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s;
+}
+
+.photo-image.loading {
+  opacity: 0;
+}
+
+.photo-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+  border-top-color: #1296db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.photo-info {
+  padding: 16rpx;
+  flex: 1;
+}
+
+.photo-description {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.photo-meta {
+  padding: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.photo-user {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.user-name {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.photo-date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.photo-date {
+ 
